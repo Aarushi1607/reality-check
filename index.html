@@ -3,50 +3,87 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>REALITY CHECK — A CAPTCHA Puzzle Game</title>
+  <title>REALITY CHECK — Stranger Things Psychological CAPTCHA</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- CRT scanlines and atmospheric overlay -->
+  <!-- Ambient dimensional visual layers -->
+  <div class="spore-particles" aria-hidden="true"></div>
   <div class="scanlines" aria-hidden="true"></div>
   <div class="vignette" aria-hidden="true"></div>
+  <div class="crt-flicker" aria-hidden="true"></div>
 
   <main class="app-container" id="app">
     
     <!-- Screen 1: Start Screen (#screen-start) -->
     <section id="screen-start" class="screen" aria-labelledby="start-title">
-      <div class="terminal-tag" aria-hidden="true">[ SYSTEM: REALITY PROTOCOL v1.0 ]</div>
+      <div class="terminal-tag" aria-hidden="true">[ DEPT OF ENERGY // HAWKINS LAB SURVEILLANCE 1983 ]</div>
+      
       <div class="title-container">
         <h1 id="start-title" class="main-title">REALITY CHECK</h1>
-        <p class="subtitle">An eerie visual reasoning anomaly test.</p>
+        <p class="subtitle">A psychological reasoning puzzle of dimensional anomalies, rifts, and psychic signals.</p>
       </div>
       
       <div class="concept-box">
+        <div class="concept-prefix">[ MISSION DIRECTIVE ]</div>
         <p id="concept-text">Traditional CAPTCHAs ask you to recognize things. This asks you to apply a rule.</p>
+      </div>
+
+      <!-- Protocol Selection -->
+      <div class="mode-selector-container" role="group" aria-label="Investigation Protocol Selection">
+        <div class="mode-selector-label">SELECT INVESTIGATION PROTOCOL:</div>
+        <div class="mode-buttons-row">
+          <button id="mode-investigation" class="mode-btn mode-selected" type="button" aria-pressed="true">
+            <span class="mode-badge">EXPEDITION</span>
+            <span class="mode-name">THE HAWKINS TRIAL</span>
+            <span class="mode-desc">Memory, Gate Ciphers, Spatial Anomalies, Radio Waves</span>
+          </button>
+          
+          <button id="mode-gravity" class="mode-btn" type="button" aria-pressed="false">
+            <span class="mode-badge">CORE</span>
+            <span class="mode-name">SPATIAL ANOMALY ONLY</span>
+            <span class="mode-desc">5 Rounds of Gravity Glitch Anomaly Detection</span>
+          </button>
+        </div>
       </div>
 
       <button id="btn-start" class="btn btn-primary" type="button">
         START REALITY CHECK
       </button>
 
-      <p class="footer-info">5 rounds &bull; 20 seconds each &bull; Keyboard friendly (Tab / Enter)</p>
+      <!-- Forest silhouette backdrop -->
+      <div class="forest-silhouette" aria-hidden="true"></div>
+      
+      <p class="footer-info">5 Rounds &bull; 20s Per Anomaly &bull; Fully Accessible with Tab / Enter</p>
     </section>
 
     <!-- Screen 2: Round Screen (#screen-round) -->
     <section id="screen-round" class="screen hidden" aria-labelledby="round-counter">
-      <!-- HUD Bar: Round Counter, Timer, Score -->
+      <!-- HUD Bar: Round Counter, Challenge Protocol, Timer, Score -->
       <header class="round-hud">
-        <div class="hud-item">
-          <span class="hud-label">STATUS</span>
+        <div class="hud-item hud-status-block">
+          <span class="hud-label">SURVEILLANCE</span>
           <span id="round-counter" class="hud-value">Round 1 of 5</span>
+          <div class="progress-nodes" aria-label="Trial progression">
+            <span class="progress-node node-active" aria-hidden="true">◆</span>
+            <span class="progress-node node-pending" aria-hidden="true">◇</span>
+            <span class="progress-node node-pending" aria-hidden="true">◇</span>
+            <span class="progress-node node-pending" aria-hidden="true">◇</span>
+            <span class="progress-node node-pending" aria-hidden="true">◇</span>
+          </div>
+        </div>
+
+        <div class="hud-item hud-protocol-block">
+          <span class="hud-label">PROTOCOL</span>
+          <span id="challenge-badge" class="hud-badge">HAWKINS LAB — MEMORY SEQUENCE</span>
         </div>
 
         <div class="hud-item timer-box" id="timer-box" role="timer" aria-live="off">
-          <span class="hud-label">TIME</span>
+          <span class="hud-label">TIMER</span>
           <span id="timer-count" class="timer-count">20</span><span class="hud-label">s</span>
         </div>
 
-        <div class="hud-item">
+        <div class="hud-item hud-score-block">
           <span class="hud-label">SCORE</span>
           <span id="score-display" class="hud-value">Score: 0</span>
         </div>
@@ -54,13 +91,13 @@
 
       <!-- Rule Banner -->
       <div class="rule-container">
-        <div class="rule-label">ACTIVE RULE</div>
+        <div class="rule-label">ACTIVE RULE SPECIFICATION</div>
         <p id="rule-text" class="rule-text">Everyone stands on the ground. One person does not.</p>
       </div>
 
       <!-- Scene Box (#scene) -->
-      <div id="scene" class="scene-container" aria-label="Visual scene with figures">
-        <!-- SVG scene generated by game.js and figures.js -->
+      <div id="scene" class="scene-container" aria-label="Anomaly scene puzzle area">
+        <!-- Injected dynamically by game.js -->
       </div>
 
       <!-- Feedback Live Region (inside round screen) -->
@@ -77,11 +114,13 @@
 
     <!-- Screen 3: Results Screen (#screen-results) -->
     <section id="screen-results" class="screen hidden" aria-labelledby="results-title">
-      <div class="terminal-tag" aria-hidden="true">[ DEBRIEFING COMPLETE ]</div>
+      <div class="terminal-tag" aria-hidden="true">[ DEPT OF ENERGY // TRIAL COMPLETE ]</div>
       <h1 id="results-title" class="results-title">REALITY DEBRIEF</h1>
 
       <div class="score-display-card">
+        <div class="score-badge-label">ANOMALY RESOLUTION SCORE</div>
         <div id="final-score" class="score-number">Score: 0 / 5</div>
+        <div class="score-divider" aria-hidden="true"></div>
         <p id="verdict-text" class="verdict-line">Clear sight</p>
       </div>
 
@@ -89,7 +128,8 @@
         Play again
       </button>
 
-      <p class="footer-info">Every run is newly generated &bull; No reload required</p>
+      <div class="forest-silhouette" aria-hidden="true"></div>
+      <p class="footer-info">Every run is dynamically generated &bull; Restart in-place with zero page reload</p>
     </section>
 
   </main>

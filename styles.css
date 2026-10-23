@@ -1,23 +1,32 @@
 /* styles.css */
-/* REALITY CHECK - Stranger Things Inspired CAPTCHA Puzzle Game */
-/* TODO(purvesh): Visual styling, glitch transitions, theme variables, and focus styles */
+/* REALITY CHECK - Stranger Things Inspired Psychological Puzzle Experience */
+/* TODO(purvesh): Visual styling, retro-80s aesthetics, focus styles, and theme variables */
 
 :root {
-  --bg-deep-void: #060609;
-  --bg-panel: #0d0c14;
-  --bg-panel-border: #231d2e;
+  --bg-deep-void: #050408;
+  --bg-panel: #0b0914;
+  --bg-panel-surface: rgba(14, 11, 24, 0.92);
+  --bg-panel-border: #261f36;
   
   --crimson-core: #e50914;
-  --crimson-glow: rgba(229, 9, 20, 0.45);
+  --crimson-glow: rgba(229, 9, 20, 0.55);
   --crimson-dark: #660000;
+  --crimson-burn: #ff1f33;
   
-  --electric-blue: #00e5ff;
-  --electric-blue-glow: rgba(0, 229, 255, 0.4);
+  --electric-blue: #00f0ff;
+  --electric-blue-glow: rgba(0, 240, 255, 0.45);
+  --electric-blue-dark: #004b57;
+
+  --phosphor-green: #00ff66;
+  --phosphor-glow: rgba(0, 255, 102, 0.4);
   
-  --amber-warning: #ff9900;
-  --text-primary: #f0e6d6;
-  --text-muted: #8d8799;
-  --ground-color: #3d344d;
+  --amber-warning: #ffaa00;
+  --amber-glow: rgba(255, 170, 0, 0.4);
+
+  --text-primary: #f2e9dc;
+  --text-muted: #8d879e;
+  --text-dim: #5c556b;
+  --ground-color: #3b314d;
 
   --font-terminal: "Courier New", Courier, ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
 }
@@ -40,9 +49,43 @@ body {
   overflow-x: hidden;
   position: relative;
   letter-spacing: 0.05em;
+  background-image: 
+    radial-gradient(circle at 50% 15%, rgba(180, 10, 20, 0.18) 0%, transparent 55%),
+    radial-gradient(circle at 50% 85%, rgba(0, 240, 255, 0.08) 0%, transparent 60%);
 }
 
-/* Subtle CRT scanline overlay */
+/* ==========================================================================
+   AMBIENT RETRO / DIMENSIONAL EFFECTS
+   ========================================================================== */
+
+/* Floating supernatural dimensional spores */
+.spore-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, rgba(255, 100, 100, 0.7), rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.5), rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 90px 40px, rgba(0, 240, 255, 0.6), rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 160px 120px, rgba(229, 9, 20, 0.6), rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 230px 190px, rgba(255, 200, 200, 0.4), rgba(0,0,0,0));
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  animation: spores-drift 22s linear infinite;
+  opacity: 0.35;
+}
+
+@keyframes spores-drift {
+  0% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-50px) translateX(25px); }
+  100% { transform: translateY(-100px) translateX(0); }
+}
+
+/* Subtle CRT scanlines */
 .scanlines {
   position: fixed;
   top: 0;
@@ -51,34 +94,68 @@ body {
   height: 100vh;
   background: linear-gradient(
     rgba(18, 16, 16, 0) 50%, 
-    rgba(0, 0, 0, 0.25) 50%
+    rgba(0, 0, 0, 0.28) 50%
   ), linear-gradient(
     90deg,
     rgba(255, 0, 0, 0.03),
     rgba(0, 255, 0, 0.01),
     rgba(0, 0, 255, 0.03)
   );
-  background-size: 100% 4px, 6px 100%;
+  background-size: 100% 3px, 6px 100%;
   pointer-events: none;
   z-index: 999;
 }
 
-/* Atmospheric vignette */
+/* Vignette with red dimensional undertones */
 .vignette {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: radial-gradient(circle at center, transparent 40%, rgba(3, 2, 6, 0.85) 95%);
+  background: radial-gradient(circle at center, transparent 35%, rgba(2, 2, 4, 0.9) 95%);
   pointer-events: none;
   z-index: 998;
 }
 
-/* App Container */
+/* Subtle CRT phosphor flicker */
+.crt-flicker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 997;
+  opacity: 0.04;
+  background: white;
+  animation: crt-pulse 0.15s infinite;
+}
+
+@keyframes crt-pulse {
+  0% { opacity: 0.03; }
+  50% { opacity: 0.05; }
+  100% { opacity: 0.03; }
+}
+
+/* Eerie Pine Forest Silhouette */
+.forest-silhouette {
+  width: 100%;
+  height: 60px;
+  margin-top: 1.5rem;
+  opacity: 0.35;
+  background-repeat: repeat-x;
+  background-size: 160px 60px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 60"><polygon points="0,60 20,20 40,60" fill="%231a0e28"/><polygon points="25,60 50,10 75,60" fill="%2312091c"/><polygon points="65,60 85,25 105,60" fill="%231a0e28"/><polygon points="95,60 120,5 145,60" fill="%23100818"/><polygon points="135,60 150,28 165,60" fill="%23180d24"/></svg>');
+}
+
+/* ==========================================================================
+   APP STRUCTURE & SCREENS
+   ========================================================================== */
+
 .app-container {
   width: 100%;
-  max-width: 900px;
+  max-width: 920px;
   padding: 1.5rem;
   z-index: 10;
   display: flex;
@@ -86,14 +163,13 @@ body {
   gap: 1.5rem;
 }
 
-/* Screen visibility management */
 .screen {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   opacity: 1;
-  transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.25s ease-in-out;
 }
 
 .screen.hidden {
@@ -102,179 +178,319 @@ body {
   pointer-events: none;
 }
 
-/* Terminal Header Badge */
 .terminal-tag {
   font-size: 0.75rem;
   color: var(--crimson-core);
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 0 8px var(--crimson-glow);
+  margin-bottom: 0.6rem;
+  text-shadow: 0 0 10px var(--crimson-glow);
 }
 
 /* ==========================================================================
-   START SCREEN
+   SCREEN 1: START SCREEN
    ========================================================================== */
+
 #screen-start {
   text-align: center;
-  padding: 3rem 1.5rem;
-  background: radial-gradient(ellipse at top, #180d1e 0%, var(--bg-panel) 70%);
+  padding: 2.8rem 1.5rem 1.5rem;
+  background: radial-gradient(ellipse at top, #160a1e 0%, var(--bg-panel-surface) 75%);
   border: 1px solid var(--bg-panel-border);
   border-radius: 8px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(229, 9, 20, 0.08);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.9), inset 0 0 25px rgba(229, 9, 20, 0.08);
 }
 
 .title-container {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .main-title {
-  font-size: clamp(2.2rem, 6vw, 3.8rem);
+  font-size: clamp(2.4rem, 6.5vw, 4.2rem);
   font-weight: 900;
   color: var(--text-primary);
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.16em;
   text-shadow: 
-    0 0 10px var(--crimson-glow),
-    0 0 25px var(--crimson-core),
+    0 0 12px var(--crimson-glow),
+    0 0 30px var(--crimson-core),
     -2px 0 var(--electric-blue);
   margin-bottom: 0.5rem;
 }
 
 .subtitle {
-  font-size: clamp(0.9rem, 2.5vw, 1.15rem);
+  font-size: clamp(0.95rem, 2.5vw, 1.15rem);
   color: var(--text-muted);
-  max-width: 600px;
+  max-width: 640px;
   line-height: 1.6;
   margin: 0 auto;
 }
 
 .concept-box {
-  margin: 1.5rem 0 2.5rem;
-  padding: 1rem 1.25rem;
-  background-color: rgba(5, 4, 10, 0.6);
+  margin: 1.25rem auto 1.75rem;
+  padding: 0.9rem 1.25rem;
+  background-color: rgba(6, 4, 12, 0.7);
   border-left: 3px solid var(--crimson-core);
   border-right: 1px solid var(--bg-panel-border);
-  max-width: 640px;
+  max-width: 680px;
+  text-align: left;
+}
+
+.concept-prefix {
+  font-size: 0.7rem;
+  color: var(--crimson-core);
+  letter-spacing: 0.15em;
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+}
+
+#concept-text {
   font-size: 0.95rem;
-  color: #ddd4c5;
+  color: #ddd4c8;
+  line-height: 1.5;
+}
+
+/* Protocol Selector on Start Screen */
+.mode-selector-container {
+  width: 100%;
+  max-width: 720px;
+  margin: 1rem 0 2rem;
+  text-align: left;
+}
+
+.mode-selector-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+  margin-bottom: 0.6rem;
+  font-weight: bold;
+}
+
+.mode-buttons-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 650px) {
+  .mode-buttons-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mode-btn {
+  background: rgba(14, 10, 22, 0.85);
+  border: 1px solid var(--bg-panel-border);
+  border-radius: 6px;
+  padding: 1rem;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  transition: all 0.2s ease;
+  font-family: var(--font-terminal);
+}
+
+.mode-btn:hover {
+  border-color: var(--electric-blue);
+  background: rgba(0, 240, 255, 0.05);
+}
+
+.mode-btn:focus-visible {
+  outline: 2px solid var(--electric-blue);
+  outline-offset: 2px;
+}
+
+.mode-btn.mode-selected {
+  border-color: var(--crimson-core);
+  background: rgba(229, 9, 20, 0.12);
+  box-shadow: 0 0 15px rgba(229, 9, 20, 0.25);
+}
+
+.mode-badge {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  font-weight: bold;
+  color: var(--electric-blue);
+}
+
+.mode-btn.mode-selected .mode-badge {
+  color: var(--crimson-core);
+}
+
+.mode-name {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: 0.08em;
+}
+
+.mode-desc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.4;
 }
 
 /* ==========================================================================
-   ROUND SCREEN
+   SCREEN 2: ROUND SCREEN & HUD
    ========================================================================== */
+
 #screen-round {
-  background: var(--bg-panel);
+  background: var(--bg-panel-surface);
   border: 1px solid var(--bg-panel-border);
   border-radius: 8px;
   padding: 1.5rem;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.85);
 }
 
-/* Top HUD bar */
 .round-hud {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--bg-panel-border);
   margin-bottom: 1.25rem;
   font-size: 0.9rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
 }
 
 .hud-item {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .hud-label {
-  color: var(--text-muted);
-  font-size: 0.75rem;
+  color: var(--text-dim);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 
 .hud-value {
   color: var(--text-primary);
+  font-size: 0.95rem;
 }
 
+.hud-badge {
+  color: var(--electric-blue);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 8px var(--electric-blue-glow);
+}
+
+/* Dimensional Progress Nodes */
+.progress-nodes {
+  display: flex;
+  gap: 0.35rem;
+  margin-top: 0.2rem;
+}
+
+.progress-node {
+  font-size: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.progress-node.node-active {
+  color: var(--crimson-core);
+  text-shadow: 0 0 10px var(--crimson-glow);
+  transform: scale(1.2);
+}
+
+.progress-node.node-completed {
+  color: var(--electric-blue);
+  text-shadow: 0 0 8px var(--electric-blue-glow);
+}
+
+.progress-node.node-pending {
+  color: var(--text-dim);
+}
+
+/* Timer HUD Box */
 .timer-box {
   background: rgba(229, 9, 20, 0.1);
-  border: 1px solid rgba(229, 9, 20, 0.3);
-  padding: 0.25rem 0.75rem;
+  border: 1px solid rgba(229, 9, 20, 0.35);
+  padding: 0.3rem 0.85rem;
   border-radius: 4px;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.4rem;
 }
 
 .timer-count {
   color: var(--electric-blue);
-  font-size: 1.15rem;
-  font-weight: bold;
-  text-shadow: 0 0 8px var(--electric-blue-glow);
+  font-size: 1.25rem;
+  font-weight: 900;
+  text-shadow: 0 0 10px var(--electric-blue-glow);
 }
 
 .timer-box.timer-urgent .timer-count {
   color: var(--crimson-core);
-  text-shadow: 0 0 10px var(--crimson-glow);
+  text-shadow: 0 0 12px var(--crimson-glow);
   animation: pulse-urgent 0.8s infinite alternate;
 }
 
 @keyframes pulse-urgent {
-  from { opacity: 0.6; }
+  from { opacity: 0.5; }
   to { opacity: 1; }
 }
 
-/* Rule Banner */
+/* Active Rule Banner */
 .rule-container {
   width: 100%;
-  background: rgba(14, 12, 22, 0.8);
+  background: rgba(14, 11, 24, 0.85);
   border-left: 3px solid var(--electric-blue);
   padding: 0.85rem 1.25rem;
   margin-bottom: 1.25rem;
 }
 
 .rule-label {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   color: var(--electric-blue);
-  letter-spacing: 0.15em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.25rem;
 }
 
 .rule-text {
   font-size: clamp(1rem, 2.5vw, 1.2rem);
   font-weight: 600;
   color: var(--text-primary);
+  line-height: 1.4;
 }
 
-/* Scene Box */
+/* Main Scene Box Container */
 .scene-container {
   width: 100%;
-  background: radial-gradient(circle at 50% 65%, #191225 0%, #08060d 75%);
+  background: radial-gradient(circle at 50% 65%, #150f24 0%, #07050e 80%);
   border: 1px solid var(--bg-panel-border);
   border-radius: 6px;
   overflow: hidden;
   position: relative;
-  aspect-ratio: 16 / 9;
-  min-height: 280px;
-  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.9);
+  min-height: 310px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.95);
 }
 
+/* SVG Scene Specifics */
 .scene-svg {
   width: 100%;
   height: 100%;
+  aspect-ratio: 16 / 9;
   display: block;
 }
 
-/* Ground Line */
 .ground-line {
   stroke: var(--ground-color);
   stroke-width: 0.8;
   stroke-dasharray: 2 1;
 }
 
-/* Figure Styling in SVG */
 .figure-container {
   cursor: pointer;
   outline: none;
@@ -301,37 +517,30 @@ body {
   transition: all 0.3s ease;
 }
 
-/* Interactive Hotspot Focus & Hover */
-.figure-hotspot {
-  cursor: pointer;
-  outline: none;
-}
-
 .figure-hotspot:hover + .figure-visual .figure-part,
 .figure-container:hover .figure-part {
   stroke: var(--electric-blue);
   fill: var(--electric-blue);
-  filter: drop-shadow(0 0 5px var(--electric-blue-glow));
+  filter: drop-shadow(0 0 6px var(--electric-blue-glow));
 }
 
 .figure-hotspot:focus-visible {
   stroke: var(--electric-blue);
   stroke-width: 1.5;
   stroke-dasharray: 2 1;
-  fill: rgba(0, 229, 255, 0.15) !important;
+  fill: rgba(0, 240, 255, 0.2) !important;
   outline: 2px solid var(--electric-blue);
 }
 
-/* Anomaly Reveal / Highlight State */
 .figure-container.highlight-anomaly .figure-part {
   stroke: var(--crimson-core) !important;
   fill: var(--crimson-core) !important;
-  filter: drop-shadow(0 0 8px var(--crimson-glow));
+  filter: drop-shadow(0 0 10px var(--crimson-glow));
 }
 
 .figure-container.highlight-anomaly .figure-aura {
   stroke: var(--crimson-core);
-  fill: rgba(229, 9, 20, 0.15);
+  fill: rgba(229, 9, 20, 0.18);
   animation: aura-pulse 1.2s infinite alternate;
 }
 
@@ -343,29 +552,432 @@ body {
   }
   to {
     stroke-width: 2.5;
-    opacity: 0.9;
+    opacity: 0.95;
     transform: scale(1.1);
   }
 }
 
-/* Wrong Selection Feedback */
 .figure-container.figure-selected-wrong .figure-part {
   stroke: var(--amber-warning);
   fill: var(--amber-warning);
 }
 
-/* Feedback Live Region inside Round */
+/* ==========================================================================
+   MINI-GAME 1: HAWKINS LAB — MEMORY SEQUENCE
+   ========================================================================== */
+
+.memory-game-container {
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.memory-status-bar {
+  font-size: 0.85rem;
+  font-weight: bold;
+  letter-spacing: 0.15em;
+  color: var(--amber-warning);
+  text-shadow: 0 0 8px var(--amber-glow);
+  text-align: center;
+}
+
+.memory-status-bar.status-ready {
+  color: var(--electric-blue);
+  text-shadow: 0 0 10px var(--electric-blue-glow);
+}
+
+.memory-dots-container {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 1.2rem;
+}
+
+.memory-dot {
+  color: var(--text-dim);
+  transition: all 0.2s ease;
+}
+
+.memory-dot.dot-filled {
+  color: var(--electric-blue);
+  text-shadow: 0 0 8px var(--electric-blue-glow);
+  transform: scale(1.2);
+}
+
+.memory-dot.dot-wrong {
+  color: var(--crimson-core);
+  text-shadow: 0 0 8px var(--crimson-glow);
+}
+
+.memory-panels-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+@media (max-width: 550px) {
+  .memory-panels-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.memory-panel {
+  background: #110e1c;
+  border: 2px solid #2d2442;
+  border-radius: 8px;
+  padding: 1.25rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-family: var(--font-terminal);
+  transition: all 0.15s ease;
+  min-height: 90px;
+}
+
+.memory-panel:hover {
+  border-color: var(--electric-blue);
+  box-shadow: 0 0 12px var(--electric-blue-glow);
+}
+
+.memory-panel:focus-visible {
+  outline: 3px solid var(--electric-blue);
+  outline-offset: 3px;
+}
+
+.panel-lamp {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #221d30;
+  border: 1px solid #443c59;
+  transition: all 0.15s ease;
+}
+
+.panel-code {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.panel-number {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--text-primary);
+}
+
+/* Illuminated state when flashed */
+.memory-panel-crimson.panel-lit {
+  background: rgba(229, 9, 20, 0.45);
+  border-color: var(--crimson-core);
+  box-shadow: 0 0 25px var(--crimson-glow);
+}
+.memory-panel-crimson.panel-lit .panel-lamp {
+  background: var(--crimson-core);
+  box-shadow: 0 0 15px var(--crimson-glow);
+}
+
+.memory-panel-cyan.panel-lit {
+  background: rgba(0, 240, 255, 0.45);
+  border-color: var(--electric-blue);
+  box-shadow: 0 0 25px var(--electric-blue-glow);
+}
+.memory-panel-cyan.panel-lit .panel-lamp {
+  background: var(--electric-blue);
+  box-shadow: 0 0 15px var(--electric-blue-glow);
+}
+
+.memory-panel-amber.panel-lit {
+  background: rgba(255, 170, 0, 0.45);
+  border-color: var(--amber-warning);
+  box-shadow: 0 0 25px var(--amber-glow);
+}
+.memory-panel-amber.panel-lit .panel-lamp {
+  background: var(--amber-warning);
+  box-shadow: 0 0 15px var(--amber-glow);
+}
+
+.memory-panel-emerald.panel-lit {
+  background: rgba(0, 255, 102, 0.45);
+  border-color: var(--phosphor-green);
+  box-shadow: 0 0 25px var(--phosphor-glow);
+}
+.memory-panel-emerald.panel-lit .panel-lamp {
+  background: var(--phosphor-green);
+  box-shadow: 0 0 15px var(--phosphor-glow);
+}
+
+.panel-sequence-correct {
+  border-color: var(--electric-blue) !important;
+  box-shadow: 0 0 20px var(--electric-blue-glow) !important;
+}
+
+.panel-sequence-wrong {
+  border-color: var(--crimson-core) !important;
+  box-shadow: 0 0 20px var(--crimson-glow) !important;
+}
+
+/* ==========================================================================
+   MINI-GAME 2: GATE CIPHER — PATTERN LOGIC
+   ========================================================================== */
+
+.cipher-game-container {
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.cipher-sequence-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.25rem 2rem;
+  background: rgba(8, 6, 16, 0.85);
+  border: 1px solid var(--bg-panel-border);
+  border-radius: 6px;
+  width: 100%;
+  max-width: 640px;
+}
+
+.cipher-node {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  min-width: 50px;
+  text-align: center;
+}
+
+.cipher-node-missing {
+  color: var(--crimson-core);
+  border: 2px dashed var(--crimson-core);
+  border-radius: 6px;
+  padding: 0.2rem 0.8rem;
+  text-shadow: 0 0 12px var(--crimson-glow);
+  animation: pulse-missing 1.2s infinite alternate;
+}
+
+@keyframes pulse-missing {
+  from { border-color: rgba(229, 9, 20, 0.4); }
+  to { border-color: var(--crimson-core); }
+}
+
+.cipher-options-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  width: 100%;
+  max-width: 640px;
+}
+
+@media (max-width: 550px) {
+  .cipher-options-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.cipher-card {
+  background: #110e1c;
+  border: 1px solid var(--bg-panel-border);
+  border-radius: 6px;
+  padding: 1.25rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-family: var(--font-terminal);
+  transition: all 0.2s ease;
+}
+
+.cipher-card:hover {
+  border-color: var(--electric-blue);
+  background: rgba(0, 240, 255, 0.08);
+  box-shadow: 0 0 15px var(--electric-blue-glow);
+}
+
+.cipher-card:focus-visible {
+  outline: 3px solid var(--electric-blue);
+  outline-offset: 3px;
+}
+
+.card-badge {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+}
+
+.cipher-symbol {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.cipher-label {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.cipher-card-correct {
+  border-color: var(--electric-blue) !important;
+  background: rgba(0, 240, 255, 0.2) !important;
+  box-shadow: 0 0 20px var(--electric-blue-glow) !important;
+}
+
+.cipher-card-wrong {
+  border-color: var(--crimson-core) !important;
+  background: rgba(229, 9, 20, 0.2) !important;
+}
+
+/* ==========================================================================
+   MINI-GAME 3: RADIO INTERFERENCE — SIGNAL DEDUCTION
+   ========================================================================== */
+
+.signal-game-container {
+  width: 100%;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  width: 100%;
+  max-width: 680px;
+}
+
+@media (max-width: 600px) {
+  .signal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.signal-card {
+  background: #0d0a17;
+  border: 1px solid var(--bg-panel-border);
+  border-radius: 6px;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  cursor: pointer;
+  font-family: var(--font-terminal);
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.signal-card:hover {
+  border-color: var(--phosphor-green);
+  box-shadow: 0 0 15px var(--phosphor-glow);
+}
+
+.signal-card:focus-visible {
+  outline: 3px solid var(--electric-blue);
+  outline-offset: 3px;
+}
+
+.signal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.signal-tag {
+  color: var(--phosphor-green);
+  letter-spacing: 0.1em;
+}
+
+.signal-freq {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+}
+
+.oscilloscope-screen {
+  width: 100%;
+  height: 70px;
+  background-color: #050b07;
+  border: 1px solid #142a1c;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.oscilloscope-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: 20px 20px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 255, 102, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 255, 102, 0.08) 1px, transparent 1px);
+}
+
+.oscilloscope-svg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.oscilloscope-trace {
+  fill: none;
+  stroke: var(--phosphor-green);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 4px var(--phosphor-glow));
+}
+
+.signal-action {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--text-dim);
+  text-align: right;
+}
+
+.signal-card-anomaly {
+  border-color: var(--crimson-core) !important;
+  background: rgba(229, 9, 20, 0.15) !important;
+  box-shadow: 0 0 20px var(--crimson-glow) !important;
+}
+
+.signal-card-anomaly .oscilloscope-trace {
+  stroke: var(--crimson-core);
+  filter: drop-shadow(0 0 6px var(--crimson-glow));
+}
+
+.signal-card-wrong {
+  border-color: var(--amber-warning) !important;
+}
+
+/* ==========================================================================
+   FEEDBACK REGION & RESULTS
+   ========================================================================== */
+
 .feedback-region {
   width: 100%;
   margin-top: 1.25rem;
   padding: 1.25rem;
-  background-color: rgba(10, 8, 16, 0.9);
+  background-color: rgba(9, 7, 16, 0.95);
   border-radius: 6px;
   border: 1px solid var(--bg-panel-border);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  transition: opacity 0.2s ease;
 }
 
 .feedback-region.hidden {
@@ -384,7 +996,7 @@ body {
   font-size: 1.25rem;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
 }
 
 .feedback-correct {
@@ -400,23 +1012,21 @@ body {
 .feedback-explanation {
   font-size: 0.95rem;
   line-height: 1.5;
-  color: #cfc8da;
+  color: #d1c9db;
 }
 
-/* ==========================================================================
-   RESULTS SCREEN
-   ========================================================================== */
+/* Screen 3: Results Screen */
 #screen-results {
   text-align: center;
-  padding: 3rem 1.5rem;
-  background: radial-gradient(ellipse at top, #1a0b16 0%, var(--bg-panel) 75%);
+  padding: 3rem 1.5rem 1.5rem;
+  background: radial-gradient(ellipse at top, #1a0815 0%, var(--bg-panel-surface) 75%);
   border: 1px solid var(--bg-panel-border);
   border-radius: 8px;
-  box-shadow: 0 0 35px rgba(0, 0, 0, 0.85);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
 }
 
 .results-title {
-  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-size: clamp(2rem, 5.5vw, 2.8rem);
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -427,54 +1037,67 @@ body {
 
 .score-display-card {
   margin: 1.5rem auto 2rem;
-  padding: 1.5rem 2.5rem;
-  background: rgba(5, 4, 10, 0.8);
+  padding: 1.75rem 2.5rem;
+  background: rgba(5, 4, 10, 0.85);
   border: 1px solid var(--bg-panel-border);
   border-radius: 6px;
   display: inline-block;
+  min-width: 280px;
 }
 
-.score-number {
-  font-size: clamp(2.5rem, 7vw, 4.2rem);
-  font-weight: 900;
-  color: var(--electric-blue);
-  text-shadow: 0 0 18px var(--electric-blue-glow);
-  line-height: 1;
+.score-badge-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
   margin-bottom: 0.5rem;
 }
 
-.verdict-line {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--crimson-core);
-  letter-spacing: 0.1em;
-  text-shadow: 0 0 8px var(--crimson-glow);
+.score-number {
+  font-size: clamp(2.8rem, 7vw, 4.2rem);
+  font-weight: 900;
+  color: var(--electric-blue);
+  text-shadow: 0 0 20px var(--electric-blue-glow);
+  line-height: 1;
 }
 
-/* ==========================================================================
-   BUTTONS AND CONTROLS
-   ========================================================================== */
+.score-divider {
+  width: 60px;
+  height: 2px;
+  background-color: var(--crimson-core);
+  margin: 0.85rem auto;
+  box-shadow: 0 0 8px var(--crimson-glow);
+}
+
+.verdict-line {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--crimson-core);
+  letter-spacing: 0.12em;
+  text-shadow: 0 0 10px var(--crimson-glow);
+}
+
+/* Buttons */
 .btn {
   font-family: var(--font-terminal);
   font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  padding: 0.85rem 2rem;
+  padding: 0.85rem 2.2rem;
   border: 1px solid var(--crimson-core);
-  background-color: rgba(229, 9, 20, 0.15);
+  background-color: rgba(229, 9, 20, 0.18);
   color: var(--text-primary);
   cursor: pointer;
   border-radius: 4px;
   position: relative;
   transition: all 0.2s ease;
   min-height: 44px;
-  min-width: 140px;
+  min-width: 150px;
 }
 
 .btn:hover {
   background-color: var(--crimson-core);
-  box-shadow: 0 0 15px var(--crimson-glow);
+  box-shadow: 0 0 18px var(--crimson-glow);
   color: #ffffff;
 }
 
@@ -486,22 +1109,21 @@ body {
 
 .btn-primary {
   font-size: 1.1rem;
-  padding: 1rem 2.5rem;
+  padding: 1.1rem 2.8rem;
 }
 
 .btn-next {
   align-self: flex-end;
-  background-color: rgba(0, 229, 255, 0.15);
+  background-color: rgba(0, 240, 255, 0.15);
   border-color: var(--electric-blue);
 }
 
 .btn-next:hover {
   background-color: var(--electric-blue);
-  color: #060609;
-  box-shadow: 0 0 15px var(--electric-blue-glow);
+  color: #050408;
+  box-shadow: 0 0 18px var(--electric-blue-glow);
 }
 
-/* Footer info */
 .footer-info {
   text-align: center;
   font-size: 0.75rem;
@@ -518,6 +1140,6 @@ body {
     font-size: 0.8rem;
   }
   .scene-container {
-    min-height: 220px;
+    min-height: 250px;
   }
 }
